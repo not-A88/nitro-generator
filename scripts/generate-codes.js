@@ -41,21 +41,27 @@ function calculateSHA256Hash(input) {
 
 async function fetchData() {
     try {
-        let randomString = await generateRandomString(9999)
+        let randomString = await generateRandomString(64)
         let randomHash = await calculateSHA256Hash(randomString);
         const response = await fetch("https://api.discord.gx.games/v1/direct-fulfillment", {
             "headers": {
-                "accept": "*/*",
-                "accept-language": "en-US,en;q=0.9",
-                "content-type": "application/json",
-                "sec-ch-ua": "\"Opera GX\";v=\"105\", \"Chromium\";v=\"119\", \"Not?A_Brand\";v=\"24\"",
-                "sec-ch-ua-mobile": "?0",
-                "sec-ch-ua-platform": "\"Windows\"",
-                "sec-fetch-dest": "empty",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-site": "cross-site",
-                "Referer": "https://www.opera.com/",
-                "Referrer-Policy": "strict-origin-when-cross-origin"
+                'authority': 'api.discord.gx.games',
+                'method': 'POST',
+                'path': '/v1/direct-fulfillment',
+                'scheme': 'https',
+                'accept': '*/*',
+                'accept-encoding': 'gzip, deflate, br',
+                'accept-language': 'en-US,en;q=0.9',
+                'origin': 'https://www.opera.com',
+                'referer': 'https://www.opera.com/',
+                'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Opera GX";v="106"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-platform': '"Windows"',
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'cross-site',
+                'Content-Type': 'application/json',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 OPR/106.0.0.0'
             },
             "body": JSON.stringify({ "partnerUserId": randomHash }),
             "method": "POST"
